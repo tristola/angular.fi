@@ -1,0 +1,8 @@
+.update(*ngIf="selected")
+    input(#title="", [value]="selected.title")
+    button((click)="save(title.value)") Save
+    button((click)="remove()") Remove
+    button((click)="cancel()") Cancel
+.create(*ngIf="!selected")
+    input([(ngModel)]="newtitle")
+    button((click)="create()") Create
