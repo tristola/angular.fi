@@ -17,7 +17,6 @@ const template: string = require("./todo-edit.component.pug");
 
 export class TodoEditComponent implements OnInit {
     selected: ITodo;
-    newtitle: string = "";
 
     constructor(
         public route: ActivatedRoute,
@@ -48,12 +47,11 @@ export class TodoEditComponent implements OnInit {
         this.router.navigate(["/todo"]);
     }
 
-    create() {
+    create(title: string) {
         let todo: ITodo = {
             created: new Date,
-            title: this.newtitle
+            title: title
         };
         this.todoService.createTodo(todo);
-        this.newtitle = "";
     }
 }
