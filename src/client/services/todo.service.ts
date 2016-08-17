@@ -67,7 +67,7 @@ export class TodoService {
                     const index = this.findIndex(todo["_id"]);
                     if (index !== -1) {
                         this.list.splice(index, 1);
-                        this.todos.next(this.list);                        
+                        this.todos.next(this.list);
                     }
                 },
                 (error: any) => console.log(error)
