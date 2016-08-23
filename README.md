@@ -191,7 +191,7 @@ heroku addons:create mongolab:sandbox
 ### Deploy
 
 ```
-git push heroku origin
+git push heroku master
 ```
 
 ### Open Heroku app in browser
