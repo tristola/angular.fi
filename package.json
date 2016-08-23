@@ -62,7 +62,6 @@
     "dotenv": "~2.0.0",
     "gulp": "gulpjs/gulp.git#4.0",
     "gulp-connect": "~5.0.0",
-    "gulp-livereload": "~3.8.1",
     "gulp-nodemon": "~2.1.0",
     "gulp-sourcemaps": "~2.0.0-alpha",
     "gulp-tslint": "~6.0.2",
