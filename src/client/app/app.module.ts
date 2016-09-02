@@ -8,14 +8,14 @@ import { RouterModule } from "@angular/router";
 // App component
 import { AppComponent } from "./app.component";
 
-// Shared components
-import { ComponentsModule } from "../components/components.module";
-
 // View components
 import { FrontpageView, TodoView } from "../views";
 
 // Routing
 import { routing } from "./app.routing";
+
+// Shared components
+import { ComponentsModule } from "../components/components.module";
 
 // Shared pipes
 import { PipesModule } from "../pipes/pipes.module";
