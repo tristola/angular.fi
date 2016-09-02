@@ -4,7 +4,7 @@ Angular 2 MEAN starter - MongoDB + ExpressJS + Angular 2 + NodeJS
 
 ## Highlights
 
-- Uses Angular 2 RC5
+- Uses Angular 2 RC6
 - Uses `NgModule` type of modules
 - REST API
 - Templates (and single page app loading page, e.g. index.html) are made with [Jade](http://jade-lang.com/) (actually it's renamed to "Pug" nowadays)
