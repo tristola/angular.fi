@@ -136,8 +136,6 @@ gulp.task('webpack', gulp.series(
 
 // Watch
 gulp.task('watch', done => {
-    //gulp.watch([paths.src.server, paths.src.common], gulp.task('webpack:server'));
-
     nodemon({
         script: paths.target + '/assets/js/server.js',
         watch: paths.target + '/assets/js/server.js',
