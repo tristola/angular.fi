@@ -4,6 +4,7 @@ import * as serveStatic from "serve-static";
 import * as path from "path";
 import * as mongoose from "mongoose";
 
+import { BasicAuth } from "./basic-auth";
 import { Rest } from "./rest";
 
 declare var process, __dirname;
@@ -32,6 +33,9 @@ class Server {
         // Configure application
         this.config();
 
+        // Setup basic auth
+        this.basicAuth();
+
         // Setup routes
         this.routes();
 
@@ -51,6 +55,13 @@ class Server {
 
         // root path is under ../../target
         this.root = path.join(path.resolve(__dirname, "../../target"));
+    }
+
+    private basicAuth(): void {
+        if (process.env.BASIC_AUTH_USER) {
+            let basicAuth = new BasicAuth();
+            this.app.use(basicAuth.connect());
+        }
     }
 
     private routes(): void {

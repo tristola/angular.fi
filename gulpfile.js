@@ -7,7 +7,6 @@ const gulp              = require('gulp');
 const gulpUtil          = require('gulp-util');
 const historyApi        = require('connect-history-api-fallback');
 const karma             = require('karma');
-const livereload        = require('gulp-livereload');
 const nodemon           = require('gulp-nodemon');
 const sourcemaps        = require('gulp-sourcemaps');
 const tslint            = require('gulp-tslint');
