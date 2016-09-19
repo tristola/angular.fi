@@ -4,9 +4,9 @@ Angular 2 MEAN starter - MongoDB + ExpressJS + Angular 2 + NodeJS
 
 ## Highlights
 
-- Uses Angular 2 RC6
-- Uses `NgModule` type of modules
-- REST API
+- Angular 2.0.0 final support (with `NgModule` -type of modules)
+- Webpack 2 bundling, including lazy routes
+- REST API (done with ExpressJS)
 - Templates (and single page app loading page, e.g. index.html) are made with [Jade](http://jade-lang.com/) (actually it's renamed to "Pug" nowadays)
 - Styles are made with [Stylus](http://stylus-lang.com/)
 - Easy-to-use date pipe replacement (using MomentJS instead of the default Angular 2 date pipe)
