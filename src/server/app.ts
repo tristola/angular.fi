@@ -79,6 +79,7 @@ class Server {
 
         // Get MongoDB handle
         this.mongo = mongoose.connect(MONGODB_URI);
+        (<any>mongoose).Promise = global.Promise;
     }
 
     private listen(): void {
