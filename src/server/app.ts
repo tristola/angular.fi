@@ -59,6 +59,7 @@ class Server {
 
         // Static assets
         this.app.use("/assets", serveStatic(path.resolve(this.root, "assets")));
+        this.app.use("/favicon.ico", serveStatic(path.resolve(this.root, "favicon.ico")));
 
         // Setup REST API
         this.rest = new Rest();
