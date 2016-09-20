@@ -63,7 +63,7 @@ gulp.task('clean', () => del(paths.target));
 
 
 gulp.task('lint:app', () => {
-  return gulp.src(paths.src.client)
+  return gulp.src(paths.src.app)
     .pipe(tslint())
     .pipe(tslint.report(
       config.tslint.report.type,
@@ -86,7 +86,7 @@ gulp.task('lint', gulp.series(
 ))
 
 // Webpack
-gulp.task('webpack:client-prod', done => {
+gulp.task('webpack:app-prod', done => {
     let conf = require(config.webpack.prod);
     webpack(conf).run((error, stats) => {
         if (error) throw new gulpUtil.PluginError('webpack:app-prod', error);
