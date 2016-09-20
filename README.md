@@ -82,7 +82,6 @@ Windows doesn't add everything to global path, so you might want to install some
 
 ```
 npm install -g gulpjs/gulp-cli#4.0
-npm install -g typings
 npm install -g webpack
 ```
 
@@ -106,23 +105,13 @@ On Windows installations, it will ease the task if you use PowerShell and add al
 
 ## Installation
 
-### Install node modules
+### Install node modules and type definitions
 
 ```
 npm install
 ```
 
-Note! Typings are automatically installed along with the `npm install`.
-
-#### Install typings globally (optional)
-
-If you wish to add more typings easily you can install `typings` npm package globally with the following command:
-
-```
-npm install -g typings
-```
-
-After that you can install more typings for packages with `typings install <package> --save` or with `--global` or global (formerly _ambient_ typings).
+Note! Type definitions were earlier installed with `typings`, however, due switching to TypeScript 2.0 the type definitions are managed with `npm` and more specifically `@types/***` name space.
 
 ## Local development
 
