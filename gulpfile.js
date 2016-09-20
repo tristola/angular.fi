@@ -24,7 +24,7 @@ dotenv.config();
 //---------------------------------------------------------
 const paths = {
     src: {
-        client: ['src/client.ts', 'src/client/**/*.ts'],
+        app: ['src/main.ts', 'src/app/**/*.ts'],
         server: ['src/server.ts', 'src/server/**/*.ts'],
         common: ['src/models/**/*.ts', 'src/data/*.json', 'src/styles/**/*.styl']
     },
@@ -62,7 +62,7 @@ const config = {
 gulp.task('clean', () => del(paths.target));
 
 
-gulp.task('lint:client', () => {
+gulp.task('lint:app', () => {
   return gulp.src(paths.src.client)
     .pipe(tslint())
     .pipe(tslint.report(
@@ -81,7 +81,7 @@ gulp.task('lint:server', () => {
 });
 
 gulp.task('lint', gulp.series(
-    'lint:client',
+    'lint:app',
     'lint:server'
 ))
 
@@ -89,16 +89,16 @@ gulp.task('lint', gulp.series(
 gulp.task('webpack:client-prod', done => {
     let conf = require(config.webpack.prod);
     webpack(conf).run((error, stats) => {
-        if (error) throw new gulpUtil.PluginError('webpack:client-prod', error);
+        if (error) throw new gulpUtil.PluginError('webpack:app-prod', error);
         gulpUtil.log(stats.toString(conf.stats));
         done();
     });
 });
 
-gulp.task('webpack:client-dev', done => {
+gulp.task('webpack:app-dev', done => {
     let conf = require(config.webpack.dev);
     webpack(conf).watch(100, (error, stats) => {
-        if (error) throw new gulpUtil.PluginError('webpack:client-dev', error);
+        if (error) throw new gulpUtil.PluginError('webpack:app-dev', error);
         gulpUtil.log(stats.toString(conf.stats));
     });
     done();
@@ -124,12 +124,12 @@ gulp.task('webpack:server-dev', done => {
 
 gulp.task('webpack:dev', gulp.series(
     'webpack:server-dev',
-    'webpack:client-dev'
+    'webpack:app-dev'
 ));
 
 gulp.task('webpack', gulp.series(
     'webpack:server-prod',
-    'webpack:client-prod'
+    'webpack:app-prod'
 ));
 
 
@@ -141,7 +141,7 @@ gulp.task('watch', done => {
         ext: 'js',
         env: { 'NODE_ENV': 'development' },
         ignore: [
-           paths.target + '/assets/js/client.js',
+           paths.target + '/assets/js/app.js',
            paths.target + '/assets/js/vendor.js',
            paths.target + '/assets/js/polyfills.js',
            paths.assets
