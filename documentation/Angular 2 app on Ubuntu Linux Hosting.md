@@ -266,7 +266,7 @@ sudo apt-get install -y nodejs
 You should create a user for running the NodeJS app(s) - instead of running the apps with anybody's personal account - or even worse with a root account.
 
 ```
-sudo adduser --disabled-password --nodejs
+sudo adduser --disabled-password nodejs
 ```
 
 The user can be accessed by sudo'ers with:
