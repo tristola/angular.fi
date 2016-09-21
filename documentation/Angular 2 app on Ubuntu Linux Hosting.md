@@ -46,7 +46,8 @@ Note that the certificate is self-signed. It would be always better to use a tru
 
 ```
 cd /etc/ssl
-sudo openssl req -newkey rsa:2048 -new -x509 -days 365 -nodes -out mongodb-cert.crt -keyout mongodb-cert.key
+sudo openssl req -newkey rsa:2048 -new -x509 -days 365 \
+    -nodes -out mongodb-cert.crt -keyout mongodb-cert.key
 sudo cat mongodb-cert.key mongodb-cert.crt > mongodb.pem
 ```
 
@@ -123,7 +124,8 @@ Self-signed certificates can be used in development and small intranets, on whic
 ```
 sudo mkdir -p /etc/nginx/ssl
 cd /etc/nginx/ssl
-sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout www.myappdomain.key -out nginx.crt
+sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+    -keyout www.myappdomain.key -out www.myappdomain.com.crt
 ```
 
 #### Create CSR (Certificate Signing Request)
@@ -133,7 +135,8 @@ If you want a real certificate, you need to create a CSR:
 ```
 sudo mkdir -p /etc/nginx/ssl
 cd /etc/nginx/ssl
-sudo openssl req -new -nodes -days 365 -newkey rsa:2048 -keyout www.myappdomain.com.key -out www.myappdomain.com.csr 
+sudo openssl req -new -nodes -days 365 -newkey rsa:2048 \
+    -keyout www.myappdomain.com.key -out www.myappdomain.com.csr 
 ```
 
 Then just get the signed CRT file for example via [GoDaddy](https://www.godaddy.com/) or [RapidSSL](https://www.rapidssl.com/) or similar.
