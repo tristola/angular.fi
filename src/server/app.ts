@@ -9,11 +9,6 @@ import { Rest } from "./rest";
 
 declare var process, __dirname;
 
-/**
- * The server.
- *
- * @class Server
- */
 class Server {
     public app: any;
     private server: any;
