@@ -4,18 +4,18 @@ import { RouterModule } from "@angular/router";
 
 import { SharedModule } from "../shared/shared.module";
 
-import { TodoComponent } from "./todo.component";
-import { TodoRoutes } from "./todo.routing";
+import { OrganizersComponent } from "./organizers.component";
+import { OrganizersRoutes } from "./organizers.routing";
 
 @NgModule({
     imports: [
         CommonModule,
         SharedModule,
-        RouterModule.forChild(TodoRoutes)
+        RouterModule.forChild(OrganizersRoutes)
     ],
     declarations: [
-        TodoComponent
+        OrganizersComponent
     ]
 })
 
-export class TodoModule {}
+export class OrganizersModule {}

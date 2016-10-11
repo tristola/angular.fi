@@ -3,27 +3,52 @@
 
 :host
     display block
+    background-color color-menu-background
+    padding 0
+    margin 0
+
+    &.loading
+        overflow hidden
+        max-height 100%
+
+        .logo
+            width 80%
+            padding 10%
+
+.container
+    max-width page-width
+    margin 0 auto
+
+.logo
+    display inline-block
+    vertical-align bottom
+    width 100px
+    margin 0
+    padding 10px
+    transition all .5s ease-out
+
+    img
+        width 100%
+        height auto
+
+nav
+    display inline-block
+    vertical-align bottom
+    font-size 1.5em
+    padding 10px
+    margin-bottom 10px
+    opacity 1
+    
+    a
+        color color-menu-text
+        text-decoration none
+        border-bottom 10px solid transparent;
+        padding 10px
+        &.active
+            color color-menu-active
+            border-color color-menu-active
 
 h1
-    background-image url('/assets/images/mean_logo.png')
-    background-size 637px 163px
-    background-position top center
-    background-repeat no-repeat
-    padding-top 163px
+    max-height 100%
+    transition all .5s ease-out
     text-align center
-    
-nav
-    font-size 1.5em
-    padding 5px 0 4px 0
-    margin 0
-    a
-        color color-main-background
-        background-color color-main-border
-        text-decoration none
-        padding 5px 10px
-        border 1px solid color-main-border
-        border-bottom 0
-        &.active
-            color color-main-border
-            background-color color-main-background            
-            

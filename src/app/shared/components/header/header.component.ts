@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, HostBinding, Input } from "@angular/core";
 import { Router } from "@angular/router";
 
 declare var require;
@@ -12,5 +12,8 @@ const template: string = require("./header.component.pug");
 })
 
 export class HeaderComponent {
+    @HostBinding("class.loading") @Input("loading") loading: boolean;
+
     constructor(public router: Router) {}
+
 }

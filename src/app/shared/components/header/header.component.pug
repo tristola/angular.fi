@@ -1,12 +1,22 @@
-h1 Angular 2 MEAN starter
-nav
-    a(
-        [routerLink]="['/']",
-        [class.active]="router.url === '/'"
-    ) Frontpage
-    a(
-        [routerLink]="['/todo']",
-        [class.active]="router.url === '/todo' || router.url.startsWith('/todo/')"
-    ) Todos
+.container
+    .logo
+        img(src="/assets/images/logo-inverse.svg")
 
+    nav
+        a(
+            [routerLink]="['/']",
+            routerLinkActive="active",
+            [routerLinkActiveOptions]="{exact: true}"
+        ) Frontpage
+        a(
+            [routerLink]="['/organizers']",
+            routerLinkActive="active",
+            [routerLinkActiveOptions]="{exact: true}"
+        ) Organizers
+        a(
+            [routerLink]="['/contact']",
+            routerLinkActive="active",
+            [routerLinkActiveOptions]="{exact: true}"
+        ) Contact
 
+    //h1 Angular Finland

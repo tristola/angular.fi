@@ -11,6 +11,9 @@ const template: string = require("./app.component.pug");
 })
 
 export class AppComponent {
+    loading: boolean = true;
 
-    constructor() {}
+    constructor() {
+        setTimeout(() => this.loading = false, 5000);
+    }
 }

@@ -9,14 +9,10 @@ import { PipesModule } from "../pipes/pipes.module";
 
 import { FooterComponent } from "./footer";
 import { HeaderComponent } from "./header";
-import { TodoEditComponent } from "./todo-edit";
-import { TodoListComponent } from "./todo-list";
 
 const COMPONENTS: any[] = [
     FooterComponent,
-    HeaderComponent,
-    TodoEditComponent,
-    TodoListComponent
+    HeaderComponent
 ];
 
 @NgModule({
