@@ -1,7 +1,4 @@
 **/node_modules/
-/typings/index.d.ts
-/typings/globals
-/typings/modules
 /target
 tmp/
 __MACOSX/

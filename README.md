@@ -1,5 +1,14 @@
 # angular2-mean-starter
 
+This project is based from [angular2-mean-starter](https://github.com/jussikinnula/angular2-mean-starter) boilerplate.
+
+Note! Remember to delete *typings* directory, since this project uses *npm @types* instead (earlier *typings* were used):
+
+```
+rm -rf typings
+# or rimraf typings
+```
+
 Angular 2 MEAN starter - MongoDB + ExpressJS + Angular 2 + NodeJS
 
 ## Highlights
