@@ -29,7 +29,7 @@ export class MeetupService {
         return body.data || [];
     }
 
-    private handleError(error: any): Promise<any> {
+    private handleError(error: any): Observable<IMeetupEvent[]> {
         console.error('An error occurred', error); // for demo purposes only
         return Observable.of([]);
     }

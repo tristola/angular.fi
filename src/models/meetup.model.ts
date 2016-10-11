@@ -5,7 +5,7 @@ export interface IMeetupVenue {
     "lon": number;
     "repinned": boolean;
     "address_1": string;
-    "city": stgring;
+    "city": string;
     "country": string;
     "localized_country_name": string;
 }
