@@ -4,9 +4,9 @@ Angular 2 MEAN starter - MongoDB + ExpressJS + Angular 2 + NodeJS
 
 ## Highlights
 
-- Uses Angular 2 RC6
-- Uses `NgModule` type of modules
-- REST API
+- Angular 2.0.0 final support (with `NgModule` -type of modules)
+- Webpack 2 bundling, including lazy routes
+- REST API (done with ExpressJS)
 - Templates (and single page app loading page, e.g. index.html) are made with [Jade](http://jade-lang.com/) (actually it's renamed to "Pug" nowadays)
 - Styles are made with [Stylus](http://stylus-lang.com/)
 - Easy-to-use date pipe replacement (using MomentJS instead of the default Angular 2 date pipe)
@@ -82,7 +82,6 @@ Windows doesn't add everything to global path, so you might want to install some
 
 ```
 npm install -g gulpjs/gulp-cli#4.0
-npm install -g typings
 npm install -g webpack
 ```
 
@@ -106,23 +105,13 @@ On Windows installations, it will ease the task if you use PowerShell and add al
 
 ## Installation
 
-### Install node modules
+### Install node modules and type definitions
 
 ```
 npm install
 ```
 
-Note! Typings are automatically installed along with the `npm install`.
-
-#### Install typings globally (optional)
-
-If you wish to add more typings easily you can install `typings` npm package globally with the following command:
-
-```
-npm install -g typings
-```
-
-After that you can install more typings for packages with `typings install <package> --save` or with `--global` or global (formerly _ambient_ typings).
+Note! Type definitions were earlier installed with `typings`, however, due switching to TypeScript 2.0 the type definitions are managed with `npm` and more specifically `@types/***` name space.
 
 ## Local development
 

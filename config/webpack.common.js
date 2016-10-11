@@ -4,11 +4,12 @@ const webpack = require('webpack');
 
 // plugins
 const CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
+const ContextReplacementPlugin = webpack.ContextReplacementPlugin;
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const DedupePlugin = webpack.optimize.DedupePlugin;
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const OccurenceOrderPlugin = webpack.optimize.OccurenceOrderPlugin;
+const OccurrenceOrderPlugin = webpack.optimize.OccurrenceOrderPlugin;
 
 module.exports = {
     target: 'web',
@@ -20,7 +21,10 @@ module.exports = {
             {
                 test: /\.ts$/,
                 exclude: [path.resolve(__dirname, '../node_modules')],
-                loader: 'ts'
+                loaders: [
+                    'ts-loader',
+                    'angular2-router-loader?loader=system&genDir=assets'
+                ]
             },
             {
                 test: /\.pug$/,
@@ -28,12 +32,12 @@ module.exports = {
             },
             {
                 test: /\.styl$/,
-                include: [path.resolve(__dirname, '../src/client')],
+                include: [path.resolve(__dirname, '../src/app')],
                 loader: 'raw!postcss-loader!stylus-loader'
             },
             {
                 test: /\.styl$/,
-                exclude: [path.resolve(__dirname, '../src/client')],
+                exclude: [path.resolve(__dirname, '../src/app')],
                 include: [path.resolve(__dirname, '../src/styles')],
                 loader: ExtractTextPlugin.extract('raw!postcss-loader!stylus-loader')
             }
@@ -53,7 +57,7 @@ module.exports = {
     },
 
     entry: {
-        'assets/js/client.js': './src/client',
+        'assets/js/main.js': './src/main',
         'assets/js/vendor.js': './src/vendor',
         'assets/js/polyfills.js': './src/polyfills'
     },
@@ -63,12 +67,15 @@ module.exports = {
     ],
 
     plugins: [
+        new ContextReplacementPlugin(
+            /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
+            __dirname
+        ),
         new ExtractTextPlugin('assets/css/[contenthash:16].css'),
-        new DedupePlugin(),
-        new OccurenceOrderPlugin(),
+        new OccurrenceOrderPlugin(),
         new CommonsChunkPlugin({
             name: [
-                'assets/js/client.js',
+                'assets/js/main.js',
                 'assets/js/vendor.js',
                 'assets/js/polyfills.js'
             ]
@@ -84,7 +91,7 @@ module.exports = {
             }
         ]),
         new HtmlWebpackPlugin({
-            chunksSortMode: 'none',
+            chunksSortMode: 'auto',
             filename: 'index.html',
             hash: true,
             inject: 'body',
@@ -100,6 +107,7 @@ module.exports = {
 
     output: {
         filename: '[name]',
+        chunkFilename: 'assets/js/[chunkhash].js',
         path: path.resolve(__dirname, '../target'),
         publicPath: '/'
     },

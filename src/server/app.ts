@@ -9,11 +9,6 @@ import { Rest } from "./rest";
 
 declare var process, __dirname;
 
-/**
- * The server.
- *
- * @class Server
- */
 class Server {
     public app: any;
     private server: any;
@@ -70,6 +65,7 @@ class Server {
 
         // Static assets
         this.app.use("/assets", serveStatic(path.resolve(this.root, "assets")));
+        this.app.use("/favicon.ico", serveStatic(path.resolve(this.root, "favicon.ico")));
 
         // Setup REST API
         this.rest = new Rest();
@@ -90,6 +86,7 @@ class Server {
 
         // Get MongoDB handle
         this.mongo = mongoose.connect(MONGODB_URI);
+        (<any>mongoose).Promise = global.Promise;
     }
 
     private listen(): void {
