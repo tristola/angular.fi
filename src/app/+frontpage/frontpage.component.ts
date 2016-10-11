@@ -1,14 +1,22 @@
 import { Component } from "@angular/core";
 
+import { MeetupService } from "../shared/services";
+
+import { IMeetupEvent } from "../../models";
+
 declare var require;
 const styles: string = require("./frontpage.component.styl");
 const template: string = require("./frontpage.component.pug");
 
 @Component({
-    styles: [styles], 
+    styles: [styles],
     template
 })
 
 export class FrontpageComponent {
-    constructor() {}
+    events: IMeetupEvent[];
+
+    constructor(private meetupService: MeetupService) {
+        this.meetupService.events().subscribe( events => this.events = events );
+    }
 }

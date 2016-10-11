@@ -6,7 +6,7 @@ const webpack = require('webpack');
 const CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
 const ContextReplacementPlugin = webpack.ContextReplacementPlugin;
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const DedupePlugin = webpack.optimize.DedupePlugin;
+const DefinePlugin = webpack.DefinePlugin;
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const OccurrenceOrderPlugin = webpack.optimize.OccurrenceOrderPlugin;
@@ -71,6 +71,10 @@ module.exports = {
             /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
             __dirname
         ),
+        new DefinePlugin({
+            'process.env.MEETUP_GROUP': JSON.stringify(process.env.MEETUP_GROUP),
+            'process.env.MEETUP_API_KEY': JSON.stringify(process.env.MEETUP_API_KEY)
+        }),
         new ExtractTextPlugin('assets/css/[contenthash:16].css'),
         new OccurrenceOrderPlugin(),
         new CommonsChunkPlugin({

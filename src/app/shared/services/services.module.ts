@@ -1,9 +1,11 @@
 import { NgModule, ModuleWithProviders } from "@angular/core";
 
+import { MeetupService } from "./meetup.service";
 import { UserService } from "./user.service";
 
 const SERVICES = [
-        UserService
+	MeetupService,
+    UserService
 ]
 
 @NgModule({
