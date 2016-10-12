@@ -28,7 +28,7 @@ export class Rest {
 
     private setupRedis(): void {
         // Create a connection for use of REST API for redis, to cache results
-        const REDIS_URL = process.env.REDIS_URI || "redis://localhost:6379";
+        const REDIS_URL = process.env.REDIS_URL || "redis://localhost:6379";
         this.redis = redis.createClient(REDIS_URL);
     }
 
