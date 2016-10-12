@@ -1,42 +1,47 @@
-export interface IMeetupVenue {
-    "id": number;
-    "name": string;
-    "lat": number;
-    "lon": number;
-    "repinned": boolean;
-    "address_1": string;
-    "city": string;
-    "country": string;
-    "localized_country_name": string;
-}
+import * as request from "request";
+import * as redis from "redis";
 
-export interface IMeetupGroup {
-    "created": Date;
-    "name": string;
-    "id": number;
-    "join_mode": string;
-    "lat": number;
-    "lon": number;
-    "urlname": string;
-    "who": string;
-}
+import { IMeetupEvent, MeetupEvent } from "./meetup-event.model";
 
-export interface IMeetupEvent {
-    "created": Date;
-    "duration": number;
-    "id": number;
-    "name": string;
-    "rsvp_limit": number;
-    "status": string;
-    "time": Date;
-    "updated": Date;
-    "utc_offset": number;
-    "waitlist_count": number;
-    "yes_rsvp_count": number;
-    "venue": IMeetupVenue;
-    "group": IMeetupGroup;
-    "link": string;
-    "description": string;
-    "how_to_find_us": string;
-    "visibility": string;
+declare var process;
+
+export class Meetup {
+    private apiUrl: string = "https://api.meetup.com/";
+    private apiKey: string = process.env.MEETUP_API_KEY;
+
+    constructor(private redis: redis.RedisClient) {}
+
+    events(group: string): Promise<IMeetupEvent> {
+        return new Promise( (resolve, reject) => {
+            let url = this.apiUrl + group + "/events?key=" + this.apiKey;
+            this.redis.get(url, (error: any, reply: string) => {
+                if (reply) {
+                    resolve(this.parseData(reply));
+                } else {
+                    request.get(url, (apiError: any, apiResponse: any, body: any) => {
+                        if (!apiError) {
+                            const data = '{"events":' + body + '}';
+                            const events: IMeetupEvent[] = this.parseData(data);
+                            this.redis.set(url, data);
+                            this.redis.expire(url, 60);
+                            resolve(this.parseData(data));
+                        } else {
+                            reject();
+                        }
+                    });
+                }
+            });
+        });
+    }
+
+    private parseData(raw: string): IMeetupEvent[] {
+        let events: IMeetupEvent[];
+        try {
+            const data = JSON.parse(raw);
+            events = data.events.map( event => new MeetupEvent(event) );
+        } catch(err) {
+            // In case of error...
+        }
+        return events || [];
+    }
 }

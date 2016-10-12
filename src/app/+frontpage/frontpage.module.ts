@@ -7,6 +7,8 @@ import { SharedModule } from "../shared/shared.module";
 import { FrontpageComponent } from "./frontpage.component";
 import { FrontpageRoutes } from "./frontpage.routing";
 
+import { EventsListComponent, TweetsListComponent } from "./components";
+
 @NgModule({
     imports: [
         CommonModule,
@@ -14,7 +16,9 @@ import { FrontpageRoutes } from "./frontpage.routing";
         RouterModule.forChild(FrontpageRoutes)
     ],
     declarations: [
-        FrontpageComponent
+        FrontpageComponent,
+        EventsListComponent,
+        TweetsListComponent
     ]
 })
 

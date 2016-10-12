@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Jsonp, URLSearchParams, Response } from "@angular/http";
+import { Http, Response } from "@angular/http";
 import { Observable } from "rxjs";
 
 import { IMeetupEvent } from "../../../models";
@@ -8,25 +8,19 @@ declare var process;
 
 @Injectable()
 export class MeetupService {
-    private url: string = "https://api.meetup.com/";
-    private group: string = process.env.MEETUP_GROUP || "angular-finland";
-    private apiKey: string = process.env.MEETUP_API_KEY;
+    private url: string = "/rest/event";
 
-    constructor(private jsonp: Jsonp) {}
+    constructor(private http: Http) {}
 
-    events(): Observable<IMeetupEvent[]> {
-        var params = new URLSearchParams();
-        params.set("key", this.apiKey);
-        params.set("format", "json");
-        params.set("callback", "JSONP_CALLBACK");
-        return this.jsonp.get(this.url + this.group + "/events", { search: params })
+    events(group: string): Observable<any> {
+        return this.http.get(this.url + "/" + group)
             .map(this.extractData)
             .catch(this.handleError);
     }
 
     private extractData(response: Response): IMeetupEvent[] {
         let body = response.json();
-        return body.data || [];
+        return body.events as IMeetupEvent[] || [];
     }
 
     private handleError(error: any): Observable<IMeetupEvent[]> {

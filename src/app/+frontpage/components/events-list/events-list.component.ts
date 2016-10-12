@@ -1,19 +1,20 @@
 import { Component } from "@angular/core";
 
-import { MeetupService } from "../shared/services";
+import { MeetupService } from "../../../shared/services";
 
-import { IMeetupEvent } from "../../models";
+import { IMeetupEvent } from "../../../../models";
 
 declare var require;
-const styles: string = require("./frontpage.component.styl");
-const template: string = require("./frontpage.component.pug");
+const styles: string = require("./events-list.component.styl");
+const template: string = require("./events-list.component.pug");
 
 @Component({
+    selector: "events-list",
     styles: [styles],
     template
 })
 
-export class FrontpageComponent {
+export class EventsListComponent {
     events: IMeetupEvent[];
 
     constructor(private meetupService: MeetupService) {

@@ -1,18 +1,45 @@
 import * as express from "express";
+import * as redis from "redis";
 
-import { RestDefault, RestTodo } from "./rest/index";
+import { RestDefault, RestEvent, RestTodo, RestTwitter } from "./rest/index";
+
+declare var process;
 
 export class Rest {
-    router: express.Router;
+    private router: express.Router;
+    private redis: redis.RedisClient;
 
     constructor() {
-        this.router = express.Router();
         this.config();
     }
 
     private config(): void {
+        this.setupRouter();
+        this.setupRedis();
+        this.events();
         this.todo();
+        this.twitter();
         this.default();
+    }
+
+    private setupRouter(): void {
+        this.router = express.Router();
+    }
+
+    private setupRedis(): void {
+        // Create a connection for use of REST API for redis, to cache results
+        const REDIS_URL = process.env.MONGODB_URI || "redis://localhost:6379";
+        this.redis = redis.createClient(REDIS_URL);
+    }
+
+    private events(): void {
+        let restEvent = new RestEvent(this.redis);
+
+        // List events
+        this.router.get("/event/:group", (
+            request: express.Request,
+            response: express.Response
+        ) => restEvent.list(request, response));
     }
 
     private todo(): void {
@@ -47,6 +74,17 @@ export class Rest {
             request: express.Request,
             response: express.Response
         ) => restTodo.remove(request, response));
+    }
+
+    private twitter(): void {
+        let restTwitter = new RestTwitter(this.redis);
+
+        // List tweets
+        this.router.get("/twitter", (
+            request: express.Request,
+            response: express.Response
+        ) => restTwitter.list(request, response));
+
     }
 
     private default(): void {

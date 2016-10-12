@@ -1,0 +1,4 @@
+ul(*ngFor="let tweet of tweets")
+    li
+        a(href="{{tweet.link}}") {{tweet.message}}
+        | , {{tweet.created | date:'DD.MM.YYYY'}}

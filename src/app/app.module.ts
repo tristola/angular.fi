@@ -2,7 +2,7 @@ import { BrowserModule  } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
-import { HttpModule, JsonpModule } from "@angular/http";
+import { HttpModule } from "@angular/http";
 import { RouterModule } from "@angular/router";
 
 // App component
@@ -20,7 +20,6 @@ import { SharedModule } from "./shared/shared.module";
         CommonModule,
         FormsModule,
         HttpModule,
-        JsonpModule,
         RouterModule,
 
         // App modules

@@ -4,8 +4,13 @@
 :host
     display block
     background-color color-menu-background
-    padding 0
+    background-image url('/assets/images/background.jpg')
+    background-repeat no-repeat
+    background-position middle center
+    background-size cover
+    padding 3.5em 0 0 0
     margin 0
+    border-bottom 1px solid black
 
     &.loading
         overflow hidden
@@ -31,6 +36,12 @@
         width 100%
         height auto
 
+h1
+    display block
+    color white
+    margin 0 0 0.25em 0
+    padding 0
+
 nav
     display inline-block
     vertical-align bottom
@@ -38,7 +49,10 @@ nav
     padding 10px
     margin-bottom 10px
     opacity 1
-    
+
+.menu    
+    display block
+
     a
         color color-menu-text
         text-decoration none
@@ -47,8 +61,3 @@ nav
         &.active
             color color-menu-active
             border-color color-menu-active
-
-h1
-    max-height 100%
-    transition all .5s ease-out
-    text-align center

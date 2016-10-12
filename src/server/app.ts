@@ -7,12 +7,13 @@ import * as mongoose from "mongoose";
 import { BasicAuth } from "./basic-auth";
 import { Rest } from "./rest";
 
-declare var process, __dirname;
+declare var process, __dirname, global;
 
 class Server {
     public app: any;
     private server: any;
     private mongo: any;
+    private redis: any;
     private rest: any;
     private root: string;
     private port: number;
@@ -81,10 +82,8 @@ class Server {
     }
 
     private databases(): void {
-        // MongoDB URL
-        const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/angular2-mean-starter";
-
-        // Get MongoDB handle
+        // MongoDB
+        const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/angular-fi";
         this.mongo = mongoose.connect(MONGODB_URI);
         (<any>mongoose).Promise = global.Promise;
     }
