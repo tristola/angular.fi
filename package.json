@@ -45,6 +45,7 @@
     "@types/source-map": "~0.1.28",
     "@types/uglify-js": "~2.6.28",
     "@types/webpack": "~1.12.35",
+    "angular2-masonry": "jussikinnula/angular2-masonry#testing",
     "angular2-router-loader": "~0.3.2",
     "autoprefixer": "~6.5.0",
     "compression": "~1.6.2",

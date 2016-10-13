@@ -18,6 +18,8 @@ export class TweetsListComponent {
     tweets: ITwitterMessage[];
 
     constructor(private twitterService: TwitterService) {
-        this.twitterService.tweets("#AngularFI").subscribe( tweets => this.tweets = tweets );
+        this.twitterService.tweets("#AngularFI").subscribe( tweets => {
+            this.tweets = tweets;
+        });
     }
 }

@@ -1,4 +1,3 @@
-ul(*ngFor="let tweet of tweets")
-    li
-        a(href="{{tweet.link}}") {{tweet.message}}
-        | , {{tweet.created | date:'DD.MM.YYYY'}}
+masonry(useImagesLoaded="true")
+    masonry-brick(class="brick", *ngFor="let tweet of tweets")
+        tweet([tweet]="tweet")

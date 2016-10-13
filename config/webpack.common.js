@@ -19,7 +19,6 @@ module.exports = {
         loaders: [
             {
                 test: /\.ts$/,
-                exclude: [path.resolve(__dirname, '../node_modules')],
                 loaders: [
                     'ts-loader',
                     'angular2-router-loader?loader=system&genDir=assets'

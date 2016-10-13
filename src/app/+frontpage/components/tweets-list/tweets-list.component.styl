@@ -3,3 +3,15 @@
 
 :host
     display block
+    padding 0.5em
+    background-color green
+
+.brick
+    +for_breakpoint(mobile)
+        width: 100%;
+        
+    +for_breakpoint(tablet)
+        width: 50%;
+
+    +for_breakpoint(desktop)
+        width: 33.333333%;

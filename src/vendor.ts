@@ -7,3 +7,4 @@ import "@angular/router";
 import "@angular/forms";
 import "rxjs";
 import "moment";
+import "angular2-masonry";
