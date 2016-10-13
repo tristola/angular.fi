@@ -84,7 +84,7 @@ module.exports = {
                 to: 'assets/images'
             },
             {
-                from: 'src/favicon.ico',
+                from: 'src/images/favicons/favicon.ico',
                 to: 'favicon.ico'
             }
         ]),

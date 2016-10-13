@@ -8,9 +8,12 @@
     background-repeat no-repeat
     background-position middle center
     background-size cover
-    padding 3.5em 0 0 0
+    padding 0
     margin 0
     border-bottom 1px solid black
+
+    +for_breakpoint(not_mobile)
+        padding-top 3.5em
 
     &.loading
         overflow hidden
@@ -25,16 +28,18 @@
     margin 0 auto
 
 .logo
-    display inline-block
-    vertical-align bottom
     width 100px
-    margin 0
     padding 10px
     transition all .5s ease-out
 
-    img
-        width 100%
-        height auto
+    +for_breakpoint(mobile)
+        display block
+        margin 0 auto
+        
+    +for_breakpoint(not_mobile)
+        display inline-block
+        vertical-align bottom
+        margin 0
 
 h1
     display block
@@ -43,21 +48,60 @@ h1
     padding 0
 
 nav
-    display inline-block
-    vertical-align bottom
     font-size 1.5em
-    padding 10px
-    margin-bottom 10px
+    margin 0
+    padding 0
     opacity 1
 
-.menu    
+    +for_breakpoint(mobile)
+        display block
+        text-align center
+        
+    +for_breakpoint(not_mobile)
+        display inline-block
+        vertical-align bottom
+        margin-left 1em
+
+.menu
     display block
 
     a
-        color color-menu-text
         text-decoration none
-        border-bottom 10px solid transparent;
         padding 10px
-        &.active
-            color color-menu-active
-            border-color color-menu-active
+
+        +for_breakpoint(mobile)
+            color black
+            background-color rgba(color-menu, 0.5)
+            display block
+
+            &:hover
+                background-color rgba(color-menu, 0.75)
+
+            &.active
+                color color-menu
+                background-color rgba(color-menu-active, 0.5)
+    
+                &:hover
+                    background-color rgba(color-menu-active, 0.75)
+
+
+        +for_breakpoint(not_mobile)
+            color color-menu
+            border-bottom 10px solid transparent;
+            display inline-block
+            vertical-align bottom
+
+            &:hover
+                background-color rgba(color-menu, 0.25)
+                border-color color-menu
+
+            &.active
+                color color-menu-active
+                border-color color-menu-active
+
+                &:hover
+                    background-color rgba(color-menu-active, 0.25)
+
+img
+    width 100%
+    height auto
